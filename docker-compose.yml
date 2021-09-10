@@ -32,18 +32,18 @@ services:
     ports:
       - 8001:8001
 
-  nginx:
-    container_name: ed_nginx
-    image: nginx
-    restart: "unless-stopped"
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/sites-available/default
-      - ./letsencrypt:/etc/letsencrypt
-    depends_on:
-      - server
-      - strapi
+  # nginx:
+  #   container_name: ed_nginx
+  #   image: nginx
+  #   restart: "unless-stopped"
+  #   build:
+  #     context: ./nginx
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - ./nginx/default.conf:/etc/nginx/sites-available/default
+  #     - ./letsencrypt:/etc/letsencrypt
+  #   depends_on:
+  #     - server
+  #     - strapi

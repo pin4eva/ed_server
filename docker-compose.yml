@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  server:
+    container_name: ed_server_v3
+    image: edfhr_server_v3
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    env_file:
+      - ./server/.env
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    command: yarn start:prod
+
+  strapi:
+    container_name: ed_strapi
+    image: edfhr_strapi_v3
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile
+    env_file:
+      - ./strapi/.env
+    # volumes:
+    #   - ./v3:/app
+    #   - /app/node_modules
+    restart: unless-stopped
+    ports:
+      - 8001:8001
+    # command: yarn start

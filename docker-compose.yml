@@ -9,9 +9,9 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ./server/.env
-    volumes:
-      - ./server:/app
-      - /app/node_modules
+    # volumes:
+    #   - ./server:/app
+    #   - /app/node_modules
     restart: unless-stopped
     ports:
       - 8000:8000
@@ -31,4 +31,19 @@ services:
     restart: unless-stopped
     ports:
       - 8001:8001
-    # command: yarn start
+
+  nginx:
+    container_name: ed_nginx
+    image: nginx
+    restart: "unless-stopped"
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/sites-available/default
+      - ./letsencrypt:/etc/letsencrypt
+    depends_on:
+      - server
+      - strapi

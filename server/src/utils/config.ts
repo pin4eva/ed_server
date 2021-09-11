@@ -1,5 +1,17 @@
 import * as dotenv from 'dotenv';
-
+const prodOrigins = [
+  'http://195.110.59.91',
+  'http://server.edfhr.org',
+  'https://server.edfhr.org',
+  'https://edfhr.org',
+  'https://team.edfhr.org',
+];
+const devOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://localhost:8000',
+  'http://localhost:8001',
+];
 dotenv.config();
 
 export const CLIENT_URL =
@@ -33,6 +45,7 @@ const config = {
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
   GOOGLE_PROJECT_ID: process.env.GOOGLE_PROJECT_ID || '',
+  ORIGINS: process.env.NODE_ENV === 'production' ? prodOrigins : devOrigins,
 };
 
 export const mongooseOption = {

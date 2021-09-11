@@ -11,11 +11,11 @@ module.exports =({env})=> ({
   settings: {
     cors: {
       enable: true,
-      origin: env("NODE_ENV") === "production" ? prodOrigins : devOrigins,
+      origin: process.env.NODE_ENV === "production" ? prodOrigins : devOrigins,
     }
   }
 
 
 })
 
-
+console.log("ENV :", process.env.NODE_ENV)
